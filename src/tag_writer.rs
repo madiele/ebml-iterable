@@ -89,7 +89,7 @@ impl<W: Write> TagWriter<W>
         }
     }
 
-    fn private_flush(&mut self) -> Result<(), TagWriterError> {
+    pub fn private_flush(&mut self) -> Result<(), TagWriterError> {
         self.dest.write_all(self.working_buffer.drain(..).as_slice()).map_err(|source| TagWriterError::WriteError { source })?;
         self.dest.flush().map_err(|source| TagWriterError::WriteError { source })
     }
