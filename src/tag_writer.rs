@@ -20,7 +20,7 @@ pub struct TagWriter<W: Write>
 {
     dest: W,
     open_tags: Vec<(u64, EBMLSize)>,
-    working_buffer: Vec<u8>,
+    pub working_buffer: Vec<u8>,
 }
 
 impl<W: Write> TagWriter<W>
