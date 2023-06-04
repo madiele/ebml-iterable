@@ -255,11 +255,9 @@ impl<W: Write> TagWriter<W>
             }
         }
 
-        if !self.open_tags.iter().any(|t| matches!(t.1, Known(_))) {
-            self.private_flush()
-        } else {
-            Ok(())
-        }
+        
+        Ok(())
+        
     }
 
     ///
@@ -311,12 +309,7 @@ impl<W: Write> TagWriter<W>
     ///
     pub fn write_raw(&mut self, tag_id: u64, data: &[u8]) -> Result<(), TagWriterError> {
         self.write_binary_tag(tag_id, data)?;
-        
-        if !self.open_tags.iter().any(|t| matches!(t.1, Known(_))) {
-            self.private_flush()
-        } else {
-            Ok(())
-        }        
+        Ok(())
     }
 
     ///
